@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int n = s.size();
+        deque<char> dq;
+        for(int i = 0; i < n; i++){
+            if(s[i] == '('){
+                dq.push_front(')');
+                continue;
+            }
+            if(s[i] == '['){
+                dq.push_front(']');
+                continue;
+            }
+            if(s[i] == '{'){
+                dq.push_front('}');
+                continue;
+            }
+            if(dq.front() == s[i]){
+                dq.pop_front();
+            }
+            else{
+                return false;
+            }
+        }
+        return dq.empty();
+    }
+};
