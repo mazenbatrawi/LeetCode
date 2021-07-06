@@ -1,0 +1,46 @@
+class Solution {
+public:
+    
+    int dx[8] = {0, 0, 1, -1, 1, 1, -1, -1};
+    int dy[8] = {1, -1, 0, 0, 1, -1, 1, -1};
+    int n, m;
+    vector<vector<int>> v;
+    bool visited[102][102];
+    
+    bool check(int i, int j){
+        return 0 <= i && i < n && 0 <= j && j < m;
+    }
+    
+    void dfs(int i, int j, int mid){
+        visited[i][j] = 1;
+        for(int a = 0; a < 4; a++){
+            int newi = i + dx[a], newj = j + dy[a];
+            if(check(newi, newj)){
+                if(visited[newi][newj]) continue;
+                if(abs(v[i][j] - v[newi][newj]) <= mid) {
+                    dfs(newi, newj, mid);
+                }
+            }
+        }
+    }
+    
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        n = (int) heights.size();
+        m = (int) heights[0].size();
+        v = heights;
+        int lo = 0, hi = 1e6 + 5;
+        while(lo < hi){
+            int mid = (lo + hi) / 2;
+            memset(visited, 0, sizeof(visited));
+            dfs(0, 0, mid);
+            if(visited[n - 1][m - 1]){
+                hi = mid;
+            }
+            else{
+                lo = mid + 1;
+            }
+            
+        }
+        return hi;
+    }
+};
