@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        string ans = "";
+        int a = word1.size();
+        int b = word2.size();
+        for(int i = 0; i < min(a, b); i++){
+            ans += word1[i];
+            ans += word2[i];
+        }
+        if(a > b){
+            for(int i = b; i < a; i++){
+                ans += word1[i];
+            }
+        }
+        else{
+            for(int i = a; i < b; i++){
+                ans += word2[i];
+            }
+        }
+        return ans;
+    }
+};
