@@ -1,0 +1,15 @@
+class Solution {
+public:
+    long long dp[40];
+    
+    long long calc(int n){
+        if(n == 0)return 0;
+        if(n == 1 || n == 2)return 1;
+        if(dp[n] != -1)return dp[n];
+        return dp[n] = calc(n - 1) + calc(n - 2) + calc(n - 3);
+    }
+    int tribonacci(int n) {
+        memset(dp, -1, sizeof(dp));
+        return calc(n);
+    }
+};
