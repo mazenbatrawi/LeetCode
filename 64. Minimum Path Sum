@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>>v;
+    static const int N = 205;
+    long long dp[N][N];
+    int n,m;
+    
+    long long calc(int i, int j){
+        if(i == 0 && j == 0){
+            return v[i][j];
+        }
+        if(dp[i][j] != -1){
+            return dp[i][j];
+        }
+        long long ret = 1e9 + 5;
+        if(i>0){
+            ret = min(calc(i-1,j) + v[i][j], ret);
+        }
+        if(j>0){
+            ret = min(calc(i,j-1) + v[i][j], ret);
+        }
+        return dp[i][j] = ret;
+    }
+    int minPathSum(vector<vector<int>>& grid) {
+        v = grid;
+        n = grid.size();
+        m = grid[0].size();
+        memset(dp,-1,sizeof(dp));
+        return calc(n-1,m-1);
+    }
+};
