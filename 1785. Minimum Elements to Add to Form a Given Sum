@@ -1,0 +1,13 @@
+class Solution {
+public:
+    long long minElements(vector<int>& nums, int limit, int goal) {
+        long long sum = 0;
+        long long n = nums.size();
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
+        }
+        long long need = goal - sum;
+        need = (abs(need) + limit - 1) / limit;
+        return need;
+    }
+};
