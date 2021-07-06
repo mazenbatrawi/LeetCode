@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int beautySum(string s) {
+        int n = s.size();
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            vector<int> cnt(26, 0);
+            for(int j = i; j < n; j++){
+                cnt[s[j] - 'a']++;
+                int mx = -1, mn = 1e9 + 5;
+                for(int i = 0; i < 26; i++){
+                    if(cnt[i] > 0){
+                        mx = max(mx, cnt[i]);
+                        mn = min(mn, cnt[i]);
+                    }
+                }
+                ans += mx - mn;
+            }
+            
+        }
+        return ans;
+    }
+};
