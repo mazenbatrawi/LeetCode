@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int strStr(string s, string t) {
+        int ans = -1, n = s.size(), m = t.size();
+        if(s == t || (!s.empty() && t.empty())){
+            return 0;
+        }
+        for(int i = 0; i < n; i++){
+            if(s[i] == t[0]){
+                string test = s.substr(i, m);
+                if(test == t){
+                    ans = i;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
