@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        vector<int> cnt(26, 0);
+        int total = words.size();
+        for(auto s : words){
+            for(auto c : s){
+                cnt[c - 'a'] += 1;
+            }
+        }
+        for(int x : cnt){
+            if(x % total) return 0;
+        }
+        return 1;
+    }
+};
