@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int addRungs(vector<int>& a, int k) {
+        int ans = a[0] / k, n = a.size();
+        ans -= (a[0] % k == 0);
+        for(int i = 0; i < n - 1; i++){
+            int x = a[i + 1] - a[i];
+            ans += x / k;
+            ans -= (x % k == 0);
+        }
+        return ans;
+    }
+};
