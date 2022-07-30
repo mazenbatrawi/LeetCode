@@ -1,25 +1,22 @@
 class Solution {
 public:
-    int dp[105][105];
-    
-    int calc(int i, int j, int &m, int &n){
-        if(i == m - 1 && j == n - 1){
-            return 1;
-        }
-        if(i >= m || i < 0 || j >= n || j < 0){
-            return 0;
-        }
-        if(dp[i][j] != -1){
-            return dp[i][j];
-        }
-        int ret = 0;
-        ret += calc(i, j + 1, m, n);
-        ret += calc(i + 1, j, m, n);
-        return dp[i][j] = ret;
-    }
     
     int uniquePaths(int m, int n) {
-        memset(dp, -1, sizeof(dp));
-        return calc(0, 0, m, n);
+        vector<vector<int>> dp(m, vector<int> (n, 0));
+        dp[0][0] = 1;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i + j == 0){
+                    continue;
+                }
+                if(i - 1 >= 0){
+                    dp[i][j] += dp[i - 1][j];
+                }
+                if(j - 1 >= 0){
+                    dp[i][j] += dp[i][j - 1];
+                }
+            }
+        }
+        return dp[m - 1][n - 1];
     }
 };
