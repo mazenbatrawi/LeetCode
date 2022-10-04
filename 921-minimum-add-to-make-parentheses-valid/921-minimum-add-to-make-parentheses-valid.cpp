@@ -11,6 +11,6 @@ public:
                 sum = 0;
             }
         }
-        return abs(ans) + sum;
+        return ans + sum;
     }
 };
