@@ -3,7 +3,7 @@ public:
     vector<string> findRepeatedDnaSequences(string s) {
         int n = s.size();
         set<string> st;
-        map<string, int> freq;
+        unordered_map<string, int> freq;
         for(int i = 0; i + 9 < n; i++){
             string t = "";
             for(int j = i; j <= i + 9; j++){
