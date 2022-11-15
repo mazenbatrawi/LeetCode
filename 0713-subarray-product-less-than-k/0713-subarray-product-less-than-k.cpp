@@ -1,9 +1,5 @@
 class Solution {
 public:
-    bool ovf(int a, int b, int k){
-        return a * b >= k;
-    }
-    
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         if(k == 0){
             return 0;
